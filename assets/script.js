@@ -22,16 +22,10 @@ const slides = [
 const arrowLeft = document.querySelector('.arrow_left');
 const arrowRight = document.querySelector('.arrow_right');
 const dots = document.querySelector('.dots');
+const image = document.querySelector('#banner img');
+const tagParagraph = document.querySelector('#banner p');
 
-arrowLeft.addEventListener('click', function() {
-	console.log('Arrow Left');
-})
-
-arrowRight.addEventListener('click', function() {
-	console.log('Arrow Right');
-})
-
-insertDots();
+let imageNumber = 1;
 
 function insertDots() {
 	for (var i = 0; i < slides.length; i++) {
@@ -39,3 +33,25 @@ function insertDots() {
 		dots.innerHTML += `<span class="${classes}"></span>`;
 	}
 }
+
+insertDots();
+
+arrowLeft.addEventListener('click', function() {
+	console.log('Arrow Left');
+})
+
+arrowRight.addEventListener('click', function() {
+	const dotSelected = document.querySelector('.dot_selected');
+	const dotNextSelect = document.querySelector('.dot_selected').nextSibling;
+
+	dotSelected.classList.remove('dot_selected');
+	dotNextSelect.classList.add('dot_selected');
+	
+	imageNumber++;
+	const imageName = imageNumber === 4 ? `slide${imageNumber}.png` : `slide${imageNumber}.jpg`;
+	const imageSrc = `./assets/images/slideshow/${imageName}`;
+	const tagLine = slides[imageNumber - 1].tagLine;
+
+	image.src = imageSrc;
+	tagParagraph.innerHTML = tagLine;
+})
