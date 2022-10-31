@@ -21,6 +21,7 @@ const slides = [
 
 const arrowLeft = document.querySelector('.arrow_left');
 const arrowRight = document.querySelector('.arrow_right');
+const dots = document.querySelector('.dots');
 
 arrowLeft.addEventListener('click', function() {
 	console.log('Arrow Left');
@@ -29,3 +30,12 @@ arrowLeft.addEventListener('click', function() {
 arrowRight.addEventListener('click', function() {
 	console.log('Arrow Right');
 })
+
+insertDots();
+
+function insertDots() {
+	for (var i = 0; i < slides.length; i++) {
+		const classes = i === 0 ? 'dot dot_selected' : 'dot'; 
+		dots.innerHTML += `<span class="${classes}"></span>`;
+	}
+}
