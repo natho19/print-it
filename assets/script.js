@@ -24,19 +24,28 @@ const arrowRight = document.querySelector('.arrow_right');
 const dots = document.querySelector('.dots');
 const image = document.querySelector('#banner img');
 const tagParagraph = document.querySelector('#banner p');
-
 let imageNumber = 0;
 
-function insertDots() {
+const insertDots = function () {
 	for (var i = 0; i < slides.length; i++) {
 		const classes = i === 0 ? 'dot dot_selected' : 'dot'; 
 		dots.innerHTML += `<span class="${classes}"></span>`;
 	}
 }
 
+const showItems = function (number) {
+	const imageName = number === 3 ? `slide${number + 1}.png` : `slide${number + 1}.jpg`;
+	const imageSrc = `./assets/images/slideshow/${imageName}`;
+	const tagLine = slides[number].tagLine;
+
+	image.src = imageSrc;
+	tagParagraph.innerHTML = tagLine;
+	console.log(number);
+}
+
 insertDots();
 
-arrowLeft.addEventListener('click', function() {
+arrowLeft.addEventListener('click', function () {
 	const dotSelected = document.querySelector('.dot_selected');
 	const dotPreviousSelect = document.querySelector('.dot_selected').previousSibling;
 
@@ -44,15 +53,10 @@ arrowLeft.addEventListener('click', function() {
 	dotPreviousSelect.classList.add('dot_selected');
 	
 	imageNumber--;
-	const imageName = imageNumber === 3 ? `slide${imageNumber + 1}.png` : `slide${imageNumber + 1}.jpg`;
-	const imageSrc = `./assets/images/slideshow/${imageName}`;
-	const tagLine = slides[imageNumber].tagLine;
-
-	image.src = imageSrc;
-	tagParagraph.innerHTML = tagLine;
+	showItems(imageNumber);
 })
 
-arrowRight.addEventListener('click', function() {
+arrowRight.addEventListener('click', function () {
 	const dotSelected = document.querySelector('.dot_selected');
 	const dotNextSelect = document.querySelector('.dot_selected').nextSibling;
 
@@ -60,11 +64,5 @@ arrowRight.addEventListener('click', function() {
 	dotNextSelect.classList.add('dot_selected');
 	
 	imageNumber++;
-	
-	const imageName = imageNumber === 3 ? `slide${imageNumber + 1}.png` : `slide${imageNumber + 1}.jpg`;
-	const imageSrc = `./assets/images/slideshow/${imageName}`;
-	const tagLine = slides[imageNumber].tagLine;
-
-	image.src = imageSrc;
-	tagParagraph.innerHTML = tagLine;
+	showItems(imageNumber);
 })
