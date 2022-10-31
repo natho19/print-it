@@ -127,8 +127,11 @@ header {
 	position: absolute;
 	width: 100%;
 }
+.arrow img {
+	cursor: pointer;
+}
 #banner .arrow_left {
-	left: 10px;
+	margin-left: 10px;
 }
 #banner .arrow_right {
 	position: absolute;
