@@ -25,7 +25,7 @@ const dots = document.querySelector('.dots');
 const image = document.querySelector('#banner img');
 const tagParagraph = document.querySelector('#banner p');
 
-let imageNumber = 1;
+let imageNumber = 0;
 
 function insertDots() {
 	for (var i = 0; i < slides.length; i++) {
@@ -37,7 +37,19 @@ function insertDots() {
 insertDots();
 
 arrowLeft.addEventListener('click', function() {
-	console.log('Arrow Left');
+	const dotSelected = document.querySelector('.dot_selected');
+	const dotPreviousSelect = document.querySelector('.dot_selected').previousSibling;
+
+	dotSelected.classList.remove('dot_selected');
+	dotPreviousSelect.classList.add('dot_selected');
+	
+	imageNumber--;
+	const imageName = imageNumber === 3 ? `slide${imageNumber + 1}.png` : `slide${imageNumber + 1}.jpg`;
+	const imageSrc = `./assets/images/slideshow/${imageName}`;
+	const tagLine = slides[imageNumber].tagLine;
+
+	image.src = imageSrc;
+	tagParagraph.innerHTML = tagLine;
 })
 
 arrowRight.addEventListener('click', function() {
@@ -48,9 +60,10 @@ arrowRight.addEventListener('click', function() {
 	dotNextSelect.classList.add('dot_selected');
 	
 	imageNumber++;
-	const imageName = imageNumber === 4 ? `slide${imageNumber}.png` : `slide${imageNumber}.jpg`;
+	
+	const imageName = imageNumber === 3 ? `slide${imageNumber + 1}.png` : `slide${imageNumber + 1}.jpg`;
 	const imageSrc = `./assets/images/slideshow/${imageName}`;
-	const tagLine = slides[imageNumber - 1].tagLine;
+	const tagLine = slides[imageNumber].tagLine;
 
 	image.src = imageSrc;
 	tagParagraph.innerHTML = tagLine;
