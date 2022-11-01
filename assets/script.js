@@ -37,8 +37,11 @@ const insertDots = function () {
 
 // Affichage des informations du carrousel (chemin de l'image, texte)
 const showItems = function (number) {
-	const imageName = number === 3 ? `slide${number + 1}.png` : `slide${number + 1}.jpg`; // image1.jpg, image2.jpg, image3.jpg, image4.png
-	const imageSrc = `./assets/images/slideshow/${imageName}`;
+	const imageFileName = slides[number].image;
+	const imageName = imageFileName.split('.')[0]
+	const imageExtension = imageFileName.split('.')[1];
+	const imageSrc = `./assets/images/slideshow/${imageName}.${imageExtension}`;
+
 	image.src = imageSrc;
 	tagParagraph.innerHTML = slides[number].tagLine;
 }
