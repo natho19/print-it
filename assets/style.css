@@ -126,12 +126,15 @@ header {
 #banner .arrow {
 	position: absolute;
 	width: 100%;
+	display: flex;
+	align-items: center;
 }
 .arrow img {
 	cursor: pointer;
 }
 #banner .arrow_left {
-	margin-left: 10px;
+	position: absolute;
+	left: 10px;
 }
 #banner .arrow_right {
 	position: absolute;
