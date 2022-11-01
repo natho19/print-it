@@ -40,7 +40,6 @@ const showItems = function (number) {
 
 	image.src = imageSrc;
 	tagParagraph.innerHTML = tagLine;
-	console.log(number);
 }
 
 insertDots();
@@ -50,9 +49,15 @@ arrowLeft.addEventListener('click', function () {
 	const dotPreviousSelect = document.querySelector('.dot_selected').previousSibling;
 
 	dotSelected.classList.remove('dot_selected');
-	dotPreviousSelect.classList.add('dot_selected');
+	if (imageNumber > 0) dotPreviousSelect.classList.add('dot_selected');
 	
 	imageNumber--;
+
+	if (imageNumber === -1) {
+		imageNumber = 3;
+		dots.lastElementChild.classList.add('dot_selected');
+	}
+
 	showItems(imageNumber);
 })
 
@@ -61,8 +66,14 @@ arrowRight.addEventListener('click', function () {
 	const dotNextSelect = document.querySelector('.dot_selected').nextSibling;
 
 	dotSelected.classList.remove('dot_selected');
-	dotNextSelect.classList.add('dot_selected');
-	
+	if (imageNumber < 3) dotNextSelect.classList.add('dot_selected');
+
 	imageNumber++;
+
+	if (imageNumber === 4) {
+		imageNumber = 0;
+		dots.firstElementChild.classList.add('dot_selected');
+	}
+
 	showItems(imageNumber);
 })
