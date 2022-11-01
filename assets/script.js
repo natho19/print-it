@@ -58,7 +58,7 @@ arrowLeft.addEventListener('click', function () {
 
 	// Afficher la dernière image et le dernier bullet point quand on est sur la première image
 	if (imageNumber === -1) {
-		imageNumber = 3;
+		imageNumber = slides.length - 1;
 		dots.lastElementChild.classList.add('dot_selected');
 	}
 
@@ -71,12 +71,12 @@ arrowRight.addEventListener('click', function () {
 	const dotNextSelect = dotSelected.nextSibling; 
 
 	dotSelected.classList.remove('dot_selected');
-	if (imageNumber < 3) dotNextSelect.classList.add('dot_selected'); // dotNextSelect est disponible uniquement quand imageNumber < 3
+	if (imageNumber < slides.length - 1) dotNextSelect.classList.add('dot_selected'); // dotNextSelect est disponible uniquement quand imageNumber < slides.length - 1
 
 	imageNumber++; 
 
 	// Afficher la première image et le premier bullet point quand on est sur la dernière image
-	if (imageNumber === 4) {
+	if (imageNumber === slides.length) {
 		imageNumber = 0;
 		dots.firstElementChild.classList.add('dot_selected');
 	}
